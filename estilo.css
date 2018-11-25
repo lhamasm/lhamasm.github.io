@@ -1,0 +1,133 @@
+@font-face {
+  font-family: robotoBold;
+  src: url(Roboto-Bold.ttf);
+}
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    left: 0;
+    background-color: rgba(52,58,64);
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 1em; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+header button {
+  margin-right: 1em;
+  z-index: 2;
+}
+
+header nav ul {
+  font-family: robotoBold;
+}
+
+
+.titulo {
+  font-size: 0.85em;
+}
+
+.vl {
+    border-left: 2px solid white;
+    height: 3em;
+}
+
+.gerenciador-processos {
+  border-radius: 1em;
+  background-color: rgba(200, 200, 200);
+  padding: 1em;
+  height: 23vw;
+}
+
+.gerenciador-processador {
+  border-radius: 1em;
+  background-color: rgba(200, 200, 200);
+  padding: 1em;
+  height: 21vw;
+}
+
+.gerenciador-processador p{
+  margin: 0; 
+  padding: 0;
+  font-size: 0.85em;
+}
+
+.outro {
+  border-radius: 1em;
+  background-color: rgba(200, 200, 200);
+  padding: 1em;
+  height: 25vw;
+}
+
+.filas td {
+  width: 2.5em;
+  height: 2.5em;
+  padding: 0 1.25em;
+}
+
+.filas {
+  width: 22.5em;
+  overflow-x: auto;
+}
+
+.scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 14em;
+}
+
+table, th, td {
+  font-size: 0.83em;
+  text-align: center;
+  border: 1.5px solid #696969;
+}
+
+.btn-midnight {
+  background-color: #4682B4;
+  color: white;
+}
+
+.btn-midnight:hover:enabled {
+  background-color: #6495ED;
+}
+
+h5 {
+  font-family: robotoBold;
+}
+
+.scroll-gantt {
+  width: 30em;
+  height: 16.5em;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.ram td {
+  width: 2.5em;
+  height: 2.5em;
+  color: white;
+}
+
+
+.scroll-disco {
+  height: 90%;
+  overflow-y: auto;
+}
+
+.colorir {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+#grafico-gantt {
+  border: none;
+}
+
+#grafico-gantt td {
+  border: none;
+  padding: 0;
+  font-size: 1.5em;
+}
+
