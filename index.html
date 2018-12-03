@@ -1310,7 +1310,7 @@
                         if(EDF[0][3] > 0 ){
                             
                             if(contador <= EDF[0][3] && contador <= parseInt(document.getElementById('quantum').value)){
-                                if(seg == EDF[0][6] + EDF[0][2]){
+                                if(seg == EDF[0][6] + EDF[0][7]){
                                     document.getElementById(EDF[0][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-success"></i></td>';                                    
                                 }
                                 else{
@@ -1329,7 +1329,7 @@
                                 for(i = 1; i < EDF.length; i++){
                                     if(!EDF[i][4]){
                                         if(seg >= EDF[i][2]){
-                                            if(seg == EDF[i][6] + EDF[i][2]){
+                                            if(seg == EDF[i][6] + EDF[i][7]){
                                                 document.getElementById(EDF[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-warning"></i></td>';
                                             }
                                             else{
@@ -1338,7 +1338,7 @@
                                             turnaround++;
                                         }
                                     } else {
-                                        if(seg == EDF[i][6] + EDF[i][2]){
+                                        if(seg == EDF[i][6] + EDF[i][7]){
                                             document.getElementById(EDF[i][0]).innerHTML += '<td  style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-info"></i></td>';
                                         }
                                         else{
@@ -1349,7 +1349,7 @@
                                 }
 
                                 for(i = 0; i < espera.length; i++){
-                                    if(seg == EDF[i][6] + EDF[i][2]){
+                                    if(seg == EDF[i][6] + EDF[i][7]){
                                         document.getElementById(EDF[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-warning"></i></td>';
                                     }
                                     else{
@@ -1397,7 +1397,7 @@
                                         for(i = 0; i < EDF.length; i++){
                                             if(!EDF[i][4]){
                                                 if(EDF[i][1] != p[1] && seg >= EDF[i][2]){
-                                                    if(seg == EDF[i][6] + EDF[i][2]){
+                                                    if(seg == EDF[i][6] + EDF[i][7]){
                                                         document.getElementById(EDF[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-warning"></i></td>';
                                                     }
                                                     else{
@@ -1406,7 +1406,7 @@
                                                     turnaround++;
                                                 }
                                             }else {
-                                                if(seg == EDF[i][6] + EDF[i][2]){
+                                                if(seg == EDF[i][6] + EDF[i][7]){
                                                     document.getElementById(EDF[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-warning"></i></td>';
                                                 }
                                                 else{
@@ -1511,7 +1511,7 @@
 
                         for(i = 0; i < EDF.length; i++){
                             if(seg >= EDF[i][2]){
-                                if(EDF[i][6] + EDF[i][2] == seg){
+                                if(EDF[i][6] + EDF[i][7] == seg){
                                     document.getElementById(EDF[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-warning"></i></td>';
                                 }
                                 else{
@@ -1536,7 +1536,7 @@
                     contador = 0;
                     if(bloqueados.length == EDF.length){
                         for(i = 0; i < bloqueados.length; i++){
-                            if(seg == EDF[i][6] + EDF[i][2]){
+                            if(seg == EDF[i][6] + EDF[i][7]){
                                 document.getElementById(EDF[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-info"></i></td>';
                             }
                             else{
@@ -1890,7 +1890,7 @@
 
                 FIFO.push([cor, PID, parseInt(document.getElementById('tempo-chegada').value), parseInt(document.getElementById('tempo-execucao').value), suspenso, executandoProcesso]);
                 RR.push([cor, PID, parseInt(document.getElementById('tempo-chegada').value), parseInt(document.getElementById('tempo-execucao').value), suspenso,executandoProcesso]);
-                EDF.push([cor, PID, parseInt(document.getElementById('tempo-chegada').value), parseInt(document.getElementById('tempo-execucao').value),suspenso, executandoProcesso,  parseInt(document.getElementById('deadline').value)]);            
+                EDF.push([cor, PID, parseInt(document.getElementById('tempo-chegada').value), parseInt(document.getElementById('tempo-execucao').value),suspenso, executandoProcesso,  parseInt(document.getElementById('deadline').value), parseInt(document.getElementById('tempo-chegada').value)]);            
                 SJF.push([cor, PID, parseInt(document.getElementById('tempo-chegada').value), parseInt(document.getElementById('tempo-execucao').value), suspenso, executandoProcesso]);  
                 PRIORIDADE.push([cor, PID, parseInt(document.getElementById('tempo-chegada').value), parseInt(document.getElementById('tempo-execucao').value), suspenso, executandoProcesso, parseInt(document.getElementById('PRIO').value)]);  
                 memo.push([cor, PID, parseInt(document.getElementById('tempo-chegada').value), parseInt(document.getElementById('tempo-execucao').value), posicaoPaginas, parseInt(document.getElementById('deadline').value), parseInt(document.getElementById('PRIO').value)]);
