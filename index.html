@@ -1386,7 +1386,7 @@
                                         terminou = false;
                                         pararSeTimeout = setTimeout(edf, (EDF[0][2]-seg)*1000);
                                     } else {
-                                        if(seg == p[6] + p[2]){
+                                        if(seg == p[6] + p[7]){
                                             document.getElementById(p[0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-danger"></i></td>';
                                         }
                                         else{
@@ -1417,7 +1417,7 @@
                                         }      
 
                                         for(i = 0; i < espera.length; i++){
-                                            if(seg == espera[i][6] + espera[i][2]){
+                                            if(seg == espera[i][6] + espera[i][7]){
                                                 document.getElementById(espera[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-warning"></i></td>';
                                             }
                                             else{
@@ -1428,7 +1428,7 @@
 
                                         for(i = 0; i < parseInt(document.getElementById('sobrecarga').value)-1; i++){
                                             pararSeTimeout = setTimeout(function() {
-                                                if(seg == p[6] + p[2]){
+                                                if(seg == p[6] + p[7]){
                                                     document.getElementById(p[0]).innerHTML += '<td  style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-danger"></i></td>';
                                                 }
                                                 else{
@@ -1439,7 +1439,7 @@
                                                 for(j = 0; j < EDF.length; j++){
                                                     if(!EDF[i][4]){
                                                         if(EDF[j][1] != p[1] && seg >= EDF[j][2]){
-                                                            if(seg == EDF[j][6] + EDF[j][2]){
+                                                            if(seg == EDF[j][6] + EDF[j][7]){
                                                                 document.getElementById(EDF[i][0]).innerHTML += '<td  style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-warning"></i></td>';
                                                             }
                                                             else{
@@ -1448,7 +1448,7 @@
                                                             turnaround++;
                                                         }
                                                     }else {
-                                                        if(seg == EDF[j][6] + EDF[j][2]){
+                                                        if(seg == EDF[j][6] + EDF[j][7]){
                                                             document.getElementById(EDF[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-info"></i></td>';
                                                         }
                                                         else{
@@ -1459,7 +1459,7 @@
                                                 }
 
                                                 for(j = 0; j < espera.length; j++){
-                                                    if(seg == espera[j][6] + espera[j][2]){
+                                                    if(seg == espera[j][6] + espera[j][7]){
                                                         document.getElementById(EDF[i][0]).innerHTML += '<td style = "border-left: 2px solid orange;"><i class="fas fa-square-full text-warning"></i></td>';
                                                     }
                                                     else{
