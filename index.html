@@ -540,7 +540,60 @@
                             document.getElementById(String(memo[i][1]) + '-' + String(k)).style.backgroundColor = memo[i][0];
                         }
                     }
+
                 } 
+            }
+
+            if(document.getElementById('escalonamento').value == 'fifo'){
+                for(i = 0; i < FIFO.length; i++){
+                    if(FIFO[i][2] == seg){
+                         if(!FIFO[i][4]){
+                            document.getElementById('fila-prontos').innerHTML += '<td id="' + FIFO[i][1]+ '" width="10%" style="background-color:' + FIFO[i][0] + ';"></td>';
+                        } else {
+                            document.getElementById('fila-suspensos').innerHTML += '<td id="' + FIFO[i][1]+ '" width="10%" style="background-color:' + FIFO[i][0] + ';"></td>';
+                        }   
+                    }
+                }
+            } else if(document.getElementById('escalonamento').value == 'sjf'){
+                for(i = 0; i < SJF.length; i++){
+                    if(SJF[i][2] == seg){
+                         if(!SJF[i][4]){
+                            document.getElementById('fila-prontos').innerHTML += '<td id="' + SJF[i][1]+ '" width="10%" style="background-color:' + SJF[i][0] + ';"></td>';
+                        } else {
+                            document.getElementById('fila-suspensos').innerHTML += '<td id="' + SJF[i][1]+ '" width="10%" style="background-color:' + SJF[i][0] + ';"></td>';
+                        }   
+                    }
+                }
+            } else if(document.getElementById('escalonamento').value == 'rr'){
+                for(i = 0; i < RR.length; i++){
+                    if(RR[i][2] == seg){
+                         if(!RR[i][4]){
+                            document.getElementById('fila-prontos').innerHTML += '<td id="' + RR[i][1]+ '" width="10%" style="background-color:' + RR[i][0] + ';"></td>';
+                        } else {
+                            document.getElementById('fila-suspensos').innerHTML += '<td id="' + RR[i][1]+ '" width="10%" style="background-color:' + RR[i][0] + ';"></td>';
+                        }   
+                    }
+                }
+            } else if(document.getElementById('escalonamento').value == 'edf'){
+               for(i = 0; i < EDF.length; i++){
+                    if(EDF[i][2] == seg){
+                         if(!EDF[i][4]){
+                            document.getElementById('fila-prontos').innerHTML += '<td id="' + EDF[i][1]+ '" width="10%" style="background-color:' + EDF[i][0] + ';"></td>';
+                        } else {
+                            document.getElementById('fila-suspensos').innerHTML += '<td id="' + EDF[i][1]+ '" width="10%" style="background-color:' + EDF[i][0] + ';"></td>';
+                        }   
+                    }
+                }
+            } else if(document.getElementById('escalonamento').value == 'prio'){
+                for(i = 0; i < PRIORIDADE.length; i++){
+                    if(PRIORIDADE[i][2] == seg){
+                         if(!PRIORIDADE[i][4]){
+                            document.getElementById('fila-prontos').innerHTML += '<td id="' + PRIORIDADE[i][1]+ '" width="10%" style="background-color:' + PRIORIDADE[i][0] + ';"></td>';
+                        } else {
+                            document.getElementById('fila-suspensos').innerHTML += '<td id="' + PRIORIDADE[i][1]+ '" width="10%" style="background-color:' + PRIORIDADE[i][0] + ';"></td>';
+                        }   
+                    }
+                }
             }
 
             if(memo.length > 0 && !pausado){
@@ -658,7 +711,12 @@
                     procelso[2] = seg;
                     PRIORIDADE.push(proc);
                     PRIORIDADE.sort(function(a, b){
-                        return b[6]-a[6];   
+                        if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
+                            let x = a[6];
+                            let y = b[6];
+                            return x < y ? -1 : x > y ? 1 : 0;
+                        }
+                        return a[2] - b[2];
                     });
                 }             
             }            
@@ -767,7 +825,12 @@
                     proc[2] = seg;
                     PRIORIDADE.push(proc);
                     PRIORIDADE.sort(function(a, b){
-                        return b[6]-a[6];   
+                        if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
+                            let x = a[6];
+                            let y = b[6];
+                            return x < y ? -1 : x > y ? 1 : 0;
+                        }
+                        return a[2] - b[2];
                     });
                 }
             }
@@ -1138,6 +1201,8 @@
                                     contador = 0;
                                     if(terminou){
                                         terminou = false;
+                                        processos--;
+                                        document.getElementById('processo').innerHTML = '<span class="" href="#">PROCESSOS<br>' + processos + '</span>';
                                         pararSeTimeout = setTimeout(rr, (RR[0][2]-seg)*1000);
                                     } else {
                                         document.getElementById(p[0]).innerHTML += '<td><i class="fas fa-square-full text-danger"></i></td>';
@@ -1384,6 +1449,8 @@
                                     contador = 0;
                                     if(terminou){
                                         terminou = false;
+                                        processos--;
+                                        document.getElementById('processo').innerHTML = '<span class="" href="#">PROCESSOS<br>' + processos + '</span>';
                                         pararSeTimeout = setTimeout(edf, (EDF[0][2]-seg)*1000);
                                     } else {
                                         if(seg == p[6] + p[7]){
@@ -1599,6 +1666,7 @@
                         let terminou = false;
                         PRIORIDADE[0][5] = true;
                         idExecutando = PRIORIDADE[0][1];
+                        console.log(PRIORIDADE.length);
                         document.getElementById(PRIORIDADE[0][1]).style.display = 'none';
                         document.getElementById('circulo').style.display = 'block';
                         document.getElementById('circulo').style.color = PRIORIDADE[0][0];  
@@ -1641,7 +1709,12 @@
                                     p[2] = seg;
                                     PRIORIDADE.push(p);
                                     PRIORIDADE.sort(function(a, b){
-                                        return b[6] - a[6];
+                                        if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
+                                            let x = a[6];
+                                            let y = b[6];
+                                            return x < y ? -1 : x > y ? 1 : 0;
+                                        }
+                                        return a[2] - b[2];
                                     });
                                     document.getElementById('fila-prontos').innerHTML += '<td id="' + p[1]+ '" width="10%" style="background-color:' + p[0] + ';"></td>';
                                     document.getElementById('circulo').style.display = 'none';
@@ -1653,6 +1726,8 @@
                                     contador = 0;
                                     if(terminou){
                                         terminou = false;
+                                        processos--;
+                                        document.getElementById('processo').innerHTML = '<span class="" href="#">PROCESSOS<br>' + processos + '</span>';
                                         pararSeTimeout = setTimeout(prio, (PRIORIDADE[0][2]-seg)*1000);
                                     } else {
                                         document.getElementById(p[0]).innerHTML += '<td><i class="fas fa-square-full text-danger"></i></td>';
@@ -1755,7 +1830,12 @@
                         let p = PRIORIDADE.shift();
                         PRIORIDADE.push(p);
                         PRIORIDADE.sort(function(a, b){
-                            return b[6] - a[6];
+                            if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
+                                let x = a[6];
+                                let y = b[6];
+                                return x < y ? -1 : x > y ? 1 : 0;
+                            }
+                            return a[2] - b[2];
                         });
                         bloqueados.push(p);
                         bloqueados.sort(function(a, b){
@@ -1920,7 +2000,12 @@
                     return a[2] - b[2];
                 });
                 PRIORIDADE.sort(function(a, b){
-                    return b[6] - a[6];
+                    if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
+                        let x = a[6];
+                        let y = b[6];
+                        return x < y ? -1 : x > y ? 1 : 0;
+                    }
+                    return a[2] - b[2];
                 });
             } else {
                 alert("Preencha todos os campos obrigatórios");
@@ -1954,10 +2039,6 @@
                             }
 
                             document.getElementById('grafico-gantt').innerHTML += '<tr id="' + FIFO[i][0] + '"><td style="color: ' + FIFO[i][0] + ';">P' + FIFO[i][1] + '</td>' + quadrados +  '</tr>';
-                                
-                            if(!FIFO[i][4]){
-                                document.getElementById('fila-prontos').innerHTML += '<td id="' + FIFO[i][1]+ '" width="10%" style="background-color:' + FIFO[i][0] + ';"></td>';
-                            }
                         }
                     }
                     pararSeTimeout2 = setTimeout(fifo, (FIFO[0][2]-1) * 1000);
@@ -1972,10 +2053,6 @@
                             }
 
                             document.getElementById('grafico-gantt').innerHTML += '<tr id="' + RR[i][0] + '"><td style="color:' + RR[i][0] + ';">P' + RR[i][1] + '</td>' + quadrados +  '</tr>';
-
-                            if(!RR[i][4]){
-                                document.getElementById('fila-prontos').innerHTML += '<td id="' + RR[i][1]+ '" width="10%" style="background-color:' + RR[i][0] + ';"></td>';
-                            }
                         }
                     }
                     pararSeTimeout2 = setTimeout(rr, (RR[0][2]-1) * 1000);
@@ -1988,11 +2065,7 @@
                             for(j=0; j< EDF[i][2]; j++){
                                 quadrados += '<td><i class="fas fa-square-full text-white"></i></td>';
                             }
-                           document.getElementById('grafico-gantt').innerHTML += '<tr id="' + EDF[i][0] + '"><td style="color:' + EDF[i][0] + ';">P' + EDF[i][1] + '</td>' + quadrados +  '</tr>';
-
-                            if(!EDF[i][4]){
-                                document.getElementById('fila-prontos').innerHTML += '<td id="' + EDF[i][1]+ '" width="10%" style="background-color:' + EDF[i][0] + ';"></td>';
-                            }                        
+                           document.getElementById('grafico-gantt').innerHTML += '<tr id="' + EDF[i][0] + '"><td style="color:' + EDF[i][0] + ';">P' + EDF[i][1] + '</td>' + quadrados +  '</tr>';                      
                         }
                     }
                     pararSeTimeout2 = setTimeout(edf, (EDF[0][2]-1)*1000);
@@ -2005,11 +2078,7 @@
                             for(j=0; j< SJF[i][2]; j++){
                                 quadrados += '<td><i class="fas fa-square-full text-white"></i></td>';
                             }
-                           document.getElementById('grafico-gantt').innerHTML += '<tr id="' + SJF[i][0] + '"><td style="color:' + SJF[i][0] + ';">P' + SJF[i][1] + '</td>' + quadrados +  '</tr>';
-
-                            if(!SJF[i][4]){
-                                document.getElementById('fila-prontos').innerHTML += '<td id="' + SJF[i][1]+ '" width="10%" style="background-color:' + SJF[i][0] + ';"></td>';
-                            }                        
+                           document.getElementById('grafico-gantt').innerHTML += '<tr id="' + SJF[i][0] + '"><td style="color:' + SJF[i][0] + ';">P' + SJF[i][1] + '</td>' + quadrados +  '</tr>';                      
                         }
                     }
                     pararSeTimeout2 = setTimeout(sjf, (SJF[0][2]-1)*1000);
@@ -2023,10 +2092,7 @@
                                 quadrados += '<td><i class="fas fa-square-full text-white"></i></td>';
                             }
                            document.getElementById('grafico-gantt').innerHTML += '<tr id="' + PRIORIDADE[i][0] + '"><td style="color:' + PRIORIDADE[i][0] + ';">P' + PRIORIDADE[i][1] + '</td>' + quadrados +  '</tr>';
-
-                            if(!PRIORIDADE[i][4]){
-                                document.getElementById('fila-prontos').innerHTML += '<td id="' + PRIORIDADE[i][1]+ '" width="10%" style="background-color:' + PRIORIDADE[i][0] + ';"></td>';
-                            }                        
+                      
                         }
                     }
                     pararSeTimeout2 = setTimeout(prio, (PRIORIDADE[0][2]-1)*1000);
@@ -2154,7 +2220,7 @@
             }
         }
 
-         function prosseguirProcessos(){
+        function prosseguirProcessos(){
             if(document.getElementById('escalonamento').value == 'fifo'){
                 for(i = 0; i < processosSelecionados.length; i++){
                     for(j = 0; j < FIFO.length; j++){
@@ -2251,7 +2317,12 @@
                             remove('fila-suspensos', id); 
                             document.getElementById('fila-prontos').innerHTML += '<td id="' + PRIORIDADE[j][1]+ '" width="10%" style="background-color:' + PRIORIDADE[j][0] + ';"></td>';
                             PRIORIDADE.sort(function(a, b){
-                                return b[6]-a[6];
+                                if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
+                                    let x = a[6];
+                                    let y = b[6];
+                                    return x < y ? -1 : x > y ? 1 : 0;
+                                }
+                                return a[2] - b[2];
                             });
                             break;                     
                         }
