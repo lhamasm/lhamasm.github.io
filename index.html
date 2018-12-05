@@ -993,6 +993,7 @@
                     if (!pageFault){
                         idExecutando = SJF[0][1];
                         SJF[0][5] = true;
+                        //console.log(SJF.length);
                         document.getElementById(SJF[0][1]).style.display = 'none';
                         document.getElementById('circulo').style.display = 'block';
                         document.getElementById('circulo').style.color = SJF[0][0];  
@@ -1141,6 +1142,7 @@
                         let terminou = false;
                         RR[0][5] = true;
                         idExecutando = RR[0][1];
+                        //console.log(RR.length);
                         document.getElementById(RR[0][1]).style.display = 'none';
                         document.getElementById('circulo').style.display = 'block';
                         document.getElementById('circulo').style.color = RR[0][0];  
@@ -1374,6 +1376,7 @@
                         let terminou = false;
                         EDF[0][5] = true;
                         idExecutando = EDF[0][1];
+                        //console.log(EDF.length);
                         document.getElementById(EDF[0][1]).style.display = 'none';
                         document.getElementById('circulo').style.display = 'block';
                         document.getElementById('circulo').style.color = EDF[0][0];  
