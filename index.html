@@ -97,7 +97,6 @@
                                 <th>PID</th>
                                 <th>TC</th>
                                 <th>TE</th>
-                                <th>TR</th>
                                 <th>DD</th>
                                 <th title="PRIORIDADE">PR</th>
                             </tr>
@@ -718,8 +717,8 @@
                     PRIORIDADE.push(procelso);
                     PRIORIDADE.sort(function(a, b){
                         if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
-                            let x = a[6];
-                            let y = b[6];
+                            let x = b[6];
+                            let y = a[6];
                             return x < y ? -1 : x > y ? 1 : 0;
                         }
                         return a[2] - b[2];
@@ -832,8 +831,8 @@
                     PRIORIDADE.push(proc);
                     PRIORIDADE.sort(function(a, b){
                         if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
-                            let x = a[6];
-                            let y = b[6];
+                            let x = b[6];
+                            let y = a[6];
                             return x < y ? -1 : x > y ? 1 : 0;
                         }
                         return a[2] - b[2];
@@ -1239,7 +1238,7 @@
                                                 turnaround++;
 
                                                 for(j = 0; j < RR.length; j++){
-                                                    if(!RR[i][4]){
+                                                    if(!RR[j][4]){
                                                         if(RR[j][1] != p[1] && seg >= RR[j][2]){
                                                             document.getElementById(RR[j][0]).innerHTML += '<td><i class="fas fa-square-full text-warning"></i></td>';
                                                             turnaround++;                                                            
@@ -1719,8 +1718,8 @@
                                     PRIORIDADE.push(p);
                                     PRIORIDADE.sort(function(a, b){
                                         if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
-                                            let x = a[6];
-                                            let y = b[6];
+                                            let x = b[6];
+                                            let y = a[6];
                                             return x < y ? -1 : x > y ? 1 : 0;
                                         }
                                         return a[2] - b[2];
@@ -1765,7 +1764,7 @@
                                                 turnaround++;
 
                                                 for(j = 0; j < PRIORIDADE.length; j++){
-                                                    if(!PRIORIDADE[i][4]){
+                                                    if(!PRIORIDADE[j][4]){
                                                         if(PRIORIDADE[j][1] != p[1] && seg >= PRIORIDADE[j][2]){
                                                             document.getElementById(PRIORIDADE[j][0]).innerHTML += '<td><i class="fas fa-square-full text-warning"></i></td>';
                                                             turnaround++;
@@ -1840,8 +1839,8 @@
                         PRIORIDADE.push(p);
                         PRIORIDADE.sort(function(a, b){
                             if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
-                                let x = a[6];
-                                let y = b[6];
+                                let x = b[6];
+                                let y = a[6];
                                 return x < y ? -1 : x > y ? 1 : 0;
                             }
                             return a[2] - b[2];
@@ -1957,7 +1956,7 @@
 
                 PID++;
 
-                document.getElementById('tabela-processos').innerHTML += '<tr onclick="selecionar_processo(this)"><td style="background-color:' + cor + ';"></td><td>' + PID + '</td><td>' + document.getElementById("tempo-chegada").value + '</td><td>' + document.getElementById("tempo-execucao").value + '</td><td>' + temporestante + '</td><td>' + document.getElementById("deadline").value + '</td><td>' + document.getElementById("PRIO").value + '</td></tr>';
+                document.getElementById('tabela-processos').innerHTML += '<tr onclick="selecionar_processo(this)"><td style="background-color:' + cor + ';"></td><td>' + PID + '</td><td>' + document.getElementById("tempo-chegada").value + '</td><td>' + document.getElementById("tempo-execucao").value + '</td><td>' + '</td><td>' + document.getElementById("deadline").value + '</td><td>' + document.getElementById("PRIO").value + '</td></tr>';
 
                 document.getElementById('disco').innerHTML += '<tr><td width="10%" style="border: 0px">P' + PID + '</td><td id="' + PID + '-1"></td><td id="' + PID + '-2"></td><td id="' + PID + '-3"></td><td id="' + PID + '-4"></td><td id="' + PID + '-5"></td><td id="' + PID + '-6"></td><td id="' + PID + '-7"></td></tr>';
 
@@ -2010,8 +2009,8 @@
                 });
                 PRIORIDADE.sort(function(a, b){
                     if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
-                        let x = a[6];
-                        let y = b[6];
+                        let x = b[6];
+                        let y = a[6];
                         return x < y ? -1 : x > y ? 1 : 0;
                     }
                     return a[2] - b[2];
@@ -2331,8 +2330,8 @@
                             document.getElementById('fila-prontos').innerHTML += '<td id="' + PRIORIDADE[j][1]+ '" width="10%" style="background-color:' + PRIORIDADE[j][0] + ';"></td>';
                             PRIORIDADE.sort(function(a, b){
                                 if((seg >= a[2] && seg >= b[2]) || a[2] == b[2]){
-                                    let x = a[6];
-                                    let y = b[6];
+                                    let x = b[6];
+                                    let y = a[6];
                                     return x < y ? -1 : x > y ? 1 : 0;
                                 }
                                 return a[2] - b[2];
